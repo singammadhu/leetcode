@@ -9,7 +9,8 @@ class Solution {
         int rightMax = 0;
 
         int water = 0;
-
+//Core Idea
+//Water above any building is = min(leftMax, rightMax) - height[i]
         while (l < r) {
 
             // Highest wall seen so far from the left
