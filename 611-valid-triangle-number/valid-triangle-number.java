@@ -9,10 +9,20 @@ class Solution {
             while(l<r){
                 int sum =nums[l]+nums[r];
                 if(sum>nums[i]){
+                     /*
+             Fix:
+             - Largest side (fixed)
+             - Right side
+
+             If current left is valid, (ie left + right > fixed)
+             then
+             every left till right-1
+             also works.
+            */
                   count+=r-l;
-                  r--;
+                  r--;// Done with this right.
                 }else{
-                   l++; 
+                   l++;// Need a larger sum.
                 }
             }
         }
