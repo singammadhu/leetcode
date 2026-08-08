@@ -10,12 +10,12 @@ class Solution {
             char ch = s.charAt(l);
 
             // Skip all consecutive ch from the left.
-            while (l <= r && s.charAt(l) == ch) {
+            while (l < r && s.charAt(l) == ch) {
                 l++;
             }
 
             // Skip all consecutive ch from the right.
-            while (l < r && s.charAt(r) == ch) {
+            while (l <= r && s.charAt(r) == ch) {
                 r--;
             }
         }
