@@ -6,7 +6,7 @@ class Solution {
       while(l<r&& s.charAt(l)==s.charAt(r)){
            char ch = s.charAt(l); 
           // Skip all consecutive ch from the left.
-          while (l <= r && ch == s.charAt(l)) {
+          while (l < r && ch == s.charAt(l)) {
            l++;
            }
 
