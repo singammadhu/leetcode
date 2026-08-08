@@ -15,7 +15,7 @@ class Solution {
             }
 
             // Skip all consecutive ch from the right.
-            while (l <= r && s.charAt(r) == ch) {
+            while (l < r && s.charAt(r) == ch) {
                 r--;
             }
         }
