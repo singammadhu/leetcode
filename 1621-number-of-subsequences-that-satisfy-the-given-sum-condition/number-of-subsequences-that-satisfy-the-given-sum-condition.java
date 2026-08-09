@@ -1,25 +1,31 @@
 class Solution {
     public int numSubseq(int[] nums, int target) {
+        int n = nums.length;
+        int MOD = 1_000_000_007;
+        
+        // Sort the array
         Arrays.sort(nums);
-      int n= nums.length;
-      int l = 0;
-      int r = n-1;
-      int c=0;
-      int MOD = 1_000_000_007;
-      int[] pow = new int[n];
-      pow[0]=1;
-      for(int i=1;i<n;i++){
-        pow[i]=(pow[i-1]*2)%MOD;
-      }
-      while(l<=r){
-        int sum = nums[l]+nums[r];
-        if(sum<=target){
-         c = (c + pow[r - l]) % MOD;
-         l++;
-        }else{
-            r--;
+        
+        // Precompute powers of 2: pow[i] = 2^i % MOD
+        int[] pow = new int[n];
+        pow[0] = 1;
+        for (int i = 1; i < n; i++) {
+            pow[i] = (pow[i - 1] * 2) % MOD;
         }
-      }
-      return c;  
+        
+        int left = 0, right = n - 1;
+        int count = 0;
+        
+        while (left <= right) {
+            if (nums[left] + nums[right] <= target) {
+                // All subsequences from left to right are valid
+                count = (count + pow[right - left]) % MOD;
+                left++;
+            } else {
+                right--;
+            }
+        }
+        
+        return count;
     }
 }
