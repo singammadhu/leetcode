@@ -24,21 +24,21 @@ class Solution {
             int rightSquare = nums[r] * nums[r];
 
             // The largest remaining square is always at one of the two ends.
-            if (leftSquare < rightSquare) {
+            if (leftSquare > rightSquare) {
 
                 // Place larger square at current answer position
-                ans[idx] = rightSquare;
+                ans[idx] = leftSquare;
 
                 // Left element has been used
-                r--;
+                l++;
 
             } else {
 
                 // Place larger (or equal) square at current answer position
-                ans[idx] = leftSquare;
+                ans[idx] = rightSquare;
 
                 // Right element has been used
-                l++;
+                r--;
             }
 
             // Move to the next position in the answer array
