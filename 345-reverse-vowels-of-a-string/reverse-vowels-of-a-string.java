@@ -5,6 +5,7 @@ class Solution {
        char[] arr = s.toCharArray();
        int l=0;
        int r=s.length()-1;
+       //int r = arr.length - 1;
        while(l<r){
         if(vowels.contains(arr[l])&&vowels.contains(arr[r])){
           swap(arr,l,r);
