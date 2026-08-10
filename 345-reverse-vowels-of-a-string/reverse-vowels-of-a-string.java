@@ -17,7 +17,7 @@ class Solution {
             l++;
         }
        }
-       return new String(arr);
+       return new String(arr);//this is new thing i have learned ie how to covert char arr to string
     }
     void swap(char[] arr,int l,int r){
         char temp =arr[l];
