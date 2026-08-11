@@ -8,18 +8,15 @@ class Solution {
 
         while (l < r) {
 
-            int currentArea;
-
+            int area = Math.min(height[l], height[r]) * (r - l);
+            maxArea=Math.max(area,maxArea);
             // Area is limited by the shorter wall
             if (height[l] < height[r]) {
-                currentArea = height[l] * (r - l);
                 l++;    // Move the shorter wall
             } else {
-                currentArea = height[r] * (r - l);
                 r--;    // Move the shorter wall
             }
 
-            maxArea = Math.max(maxArea, currentArea);
         }
 
         return maxArea;
