@@ -1,15 +1,33 @@
 class Solution {
-   public int removeDuplicates(int[] nums) {
-        int w=0,r=1;
-        while(r<nums.length){
-            if(nums[w]==nums[r]){
+    public int removeDuplicates(int[] nums) {
+
+        int w = 0;  // write pointer: last unique element
+        int r = 1;  // read pointer: scans for next unique element
+
+        while (r < nums.length) {
+
+            if (nums[w] == nums[r]) {
+
+                // Next element is the same,
+                // so it is a duplicate. Nothing to write.
+                // Move read pointer forward.
                 r++;
-            }else {
+
+            } else {
+
+                // Read found a new unique element.
+                // Move write pointer to the next position.
                 w++;
-                nums[w]=nums[r];
+
+                // Update the write position with the new element.
+                nums[w] = nums[r];
+
+                // Continue reading.
                 r++;
             }
         }
-        return w+1;
+
+        // w is an index, so number of unique elements = w + 1.
+        return w + 1;
     }
 }
