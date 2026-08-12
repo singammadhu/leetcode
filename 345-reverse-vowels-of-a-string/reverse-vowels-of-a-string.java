@@ -13,7 +13,7 @@ class Solution {
           r--;
         }else if(vowels.contains(arr[l])){
           r--;
-        }else{
+        }else{//
             l++;
         }
        }
