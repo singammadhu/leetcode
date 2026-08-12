@@ -1,21 +1,15 @@
 class Solution {
     public int removeElement(int[] nums, int val) {
 
-        int write = 0;
-
-        for (int read = 0; read < nums.length; read++) {
-
-            if (nums[read] != val) {
-
-                // Keep this element by writing it
-                // at the next available position.
-                nums[write] = nums[read];
-
-                write++;
+        int w =0;
+        for(int r=0;r<nums.length;r++){
+            if(nums[r]!=val){
+                nums[w]=nums[r];
+                w++;
             }
         }
+                    return w;
 
-        // write = number of elements remaining.
-        return write;
     }
+      
 }
