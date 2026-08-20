@@ -1,60 +1,59 @@
 class Solution {
     public ListNode partition(ListNode head, int x) {
 
-        if (head == null) {
-            return null;
-        }
+        // Dummy nodes:
+        // They make it easy to build both lists
+        // without worrying about the first node.
+        ListNode smallDummy = new ListNode();
+        ListNode largeDummy = new ListNode();
 
-        // Temporary storage for the partitioned values.
-        ArrayList<Integer> list = new ArrayList<>();
+        // These pointers move and build the two lists.
+        ListNode small = smallDummy;
+        ListNode large = largeDummy;
 
+        // curr = READ pointer.
+        // It scans every node in the original linked list.
         ListNode curr = head;
 
-        // First pass:
-        // Scan the linked list and collect all values < x.
         while (curr != null) {
 
             if (curr.val < x) {
-                // Value belongs to the LEFT partition.
-                list.add(curr.val);
+
+                // Node belongs to the SMALL list.
+                // smallDummy.next will eventually be
+                // the smallHead.
+                small.next = curr;
+                small = small.next;
+
+            } else {
+
+                // Node belongs to the LARGE list.
+                // largeDummy.next will eventually be
+                // the largeHead.
+                large.next = curr;
+                large = large.next;
             }
 
-            // Read pointer always moves to the next node.
+            // READ pointer always moves to the next node.
             curr = curr.next;
         }
 
-        // Second pass:
-        // Start again from the head and collect
-        // all values >= x.
-        curr = head;
+        // Connect the two lists:
+        //
+        // smallHead → nodes < x
+        // largeHead → nodes >= x
+        //
+        // So:
+        // [ small list ] → [ large list ]
+        small.next = largeDummy.next;
 
-        while (curr != null) {
+        // The large list must end here.
+        // Otherwise, an old next pointer could create
+        // an incorrect connection/cycle.
+        large.next = null;
 
-            if (curr.val >= x) {
-                // Value belongs to the RIGHT partition.
-                list.add(curr.val);
-            }
-
-            // Read pointer moves to the next node.
-            curr = curr.next;
-        }
-
-        // Now list contains:
-        // [ all values < x | all values >= x ]
-
-        curr = head;
-        int index = 0;
-
-        // Write the partitioned values back
-        // into the original linked list.
-        while (curr != null) {
-
-            curr.val = list.get(index++);
-
-            // Move to the next node.
-            curr = curr.next;
-        }
-
-        return head;
+        // Skip the dummy node.
+        // smallDummy.next is the real smallHead.
+        return smallDummy.next;
     }
 }
