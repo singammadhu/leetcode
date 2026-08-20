@@ -7,7 +7,7 @@ class Solution {
         ListNode smallDummy = new ListNode();
         ListNode largeDummy = new ListNode();
 
-        // These pointers move and build the two lists.
+        // Pointers used to build the two lists.
         ListNode small = smallDummy;
         ListNode large = largeDummy;
 
@@ -20,16 +20,12 @@ class Solution {
             if (curr.val < x) {
 
                 // Node belongs to the SMALL list.
-                // smallDummy.next will eventually be
-                // the smallHead.
                 small.next = curr;
                 small = small.next;
 
             } else {
 
                 // Node belongs to the LARGE list.
-                // largeDummy.next will eventually be
-                // the largeHead.
                 large.next = curr;
                 large = large.next;
             }
@@ -38,22 +34,15 @@ class Solution {
             curr = curr.next;
         }
 
-        // Connect the two lists:
-        //
-        // smallHead → nodes < x
-        // largeHead → nodes >= x
-        //
-        // So:
-        // [ small list ] → [ large list ]
+        // Connect the SMALL list to the LARGE list.
         small.next = largeDummy.next;
 
-        // The large list must end here.
-        // Otherwise, an old next pointer could create
-        // an incorrect connection/cycle.
+        // End the LARGE list.
+        // This prevents an old next pointer from creating
+        // an incorrect connection or cycle.
         large.next = null;
 
-        // Skip the dummy node.
-        // smallDummy.next is the real smallHead.
+        // Skip the dummy node and return the actual result list.
         return smallDummy.next;
     }
 }
