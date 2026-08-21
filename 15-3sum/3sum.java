@@ -6,7 +6,7 @@ class Solution {
         
         for(int i=0; i<n-2;i++){
              
-
+           // to avoid duplicat triplet
            if (i > 0 && nums[i] == nums[i - 1]) {
                continue; // why not i++
               }
@@ -18,19 +18,23 @@ class Solution {
            while(l<r){
             int sum =nums[l]+nums[r]+nums[i];
                 if(sum==0){
-                    List<Integer> triplet = new ArrayList<>();
-                     triplet.add(nums[i]);
-                     triplet.add(nums[l]);
-                     triplet.add(nums[r]);
-                     ans.add(triplet);
-
+                    // List<Integer> triplet = new ArrayList<>();
+                    //  triplet.add(nums[i]);
+                    //  triplet.add(nums[l]);
+                    //  triplet.add(nums[r]);
+                    //  ans.add(triplet);
+// Add the current triplet directly to the answer list
+// Arrays.asList() creates a List<Integer> containing the 3 values
+                     ans.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                     
                      l++;
                      r--;
 
-
+                 // to avoid duplicat triplet 
                  while (l<r&&nums[l]==nums[l-1]){
                   l++;
                   }
+                 // to avoid duplicat triplet
                 while(l<r&&nums[r]==nums[r+1]){
                  r--;
                  }
