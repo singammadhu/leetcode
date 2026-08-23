@@ -23,7 +23,7 @@ class Solution {
                 nums[w] = nums[r];
 
                 // Continue reading.
-                // r++; is also ok
+                 r++; //is also ok
             }
         }
 
